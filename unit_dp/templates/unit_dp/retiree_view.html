@@ -1,0 +1,75 @@
+{% extends 'unit_dp/main_template.html' %}
+{% block content %}
+{% load widget_tweaks %}
+
+
+<br>
+
+<div class="row">
+	<div class="col-md-6">
+		<div class="card card-body">
+			<h5>Retiree: {{retiree.pers_id.rank}} {{retiree.pers_id}} {{retiree.pers_id.afsn}} {{retiree.pers_id.bos}}</h5>
+			<hr>
+			<form action="" method="POST" enctype="multipart/form-data">
+            	{% csrf_token %}
+				{% for field in form %}
+					{{field.label}}
+					{{field|add_class:'form-control'}}
+				
+				{% endfor %}
+				<!-- {{form.as_table}} -->
+				{{ form.errors }}
+				<hr>
+				<input type="submit" class="btn btn-info">
+			</form>
+		</div>
+	</div>
+
+	<!-- <div class="col-md">
+		<div class="card card-body">
+			<h5>Retiree: {{retiree.pers_id}}</h5>
+			<hr>
+			<a class="btn btn-outline-info  btn-sm btn-block" href="">Update Retiree</a>
+			<a class="btn btn-outline-danger  btn-sm btn-block" href="">Delete Retiree</a>
+
+		</div>
+	</div>
+
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>Contact Information</h5>
+			<hr>
+			<p>afsn:  {{retiree.pers_id.afsn}}</p>
+			<p>bos:  {{retiree.pers_id.bos}}</p>
+		</div>
+	</div> -->
+
+	<div class="col-md-6">
+		<div class="card card-body">
+			<h5>Requests</h5>
+			<table class="table table-responsive">
+			<tr>
+				<td>Accountability</td>
+				<td>SOS</td>
+				<td>CMD Clearance</td>
+				<td>Unit Clearance</td>
+			</tr>
+			{% for req in retiree_req %}
+			<tr>
+				<td>{{req.accountability|yesno:"Yes,No"}}</td>
+				<td><a href="/uploads/{{req.uploaded_sos}}" target="_blank">{{req.uploaded_sos|cut:'unit_sos/'}}</a></td>
+				<td><a href="/uploads/{{req.uploaded_cmd_clearance}}" target="_blank">{{req.uploaded_cmd_clearance|cut:'cmd_clearance/'}}</a></td>
+				<td><a href="/uploads/{{req.uploaded_unit_clearance}}" target="_blank">{{req.uploaded_unit_clearance|cut:'unit_clearance/'}}</td>
+			</tr>
+			{% endfor %}
+			</table>
+		</div>
+	</div>
+</div>
+
+
+
+	
+
+
+{% endblock content %}

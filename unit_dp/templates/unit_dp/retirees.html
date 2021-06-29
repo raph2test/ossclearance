@@ -1,0 +1,65 @@
+{% extends 'main_template.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="row">
+	<div class="col-md-12">
+		<ul class="nav">
+			<li class="nav-item">
+				<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Module:</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/retirees">UNIT DP</a>
+			</li>
+		</ul>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-12">
+		<h5>RETIREES: {{total_retirees}}</h5>
+		<hr>
+		<div class="card card-body">
+			<a class="btn btn-primary  btn-sm btn-block" href="/retiree/add">Add Retiree</a>
+			<table class="table table-sm">
+				<tr>
+					<th></th>
+					<th>AFSN</th>
+					<th>Rank</th>
+					<th>Name</th>
+					<th>Purpose</th>
+					<th>Date Applied</th>
+					<th>Effectivity Date</th>
+					<th></th>
+				</tr>
+				{% if retirees %}
+				{% for retiree in retirees %}
+					<tr>
+						<td>{{retiree.id}}</td>
+						<td>{{retiree.pers_id.afsn}}</td>
+						<td>{{retiree.pers_id.rank}}</td>
+						<td>{{retiree.pers_id}}</td>
+						<td>{{retiree.purpose}}</td>
+						<td>{{retiree.date_applied}}</td>
+						<td>{{retiree.effectivity_date}}</td>
+						<td>
+							<a href="{% url 'retiree' retiree.id %}" class="btn btn-sm btn-info">View</a>
+							<!-- <a href="{% url 'delete_retiree' retiree.id %}" class="btn btn-sm btn-danger">X</a> -->
+						</td>
+					</tr>
+				{% endfor %}
+				{% else %}
+					<tr>
+						<td colspan="8" align="center">No Record Found.</td>
+					</tr>
+				{% endif %}
+			</table>
+		</div>
+	</div>
+
+</div>
+
+<div style="height: 400px;"></div>
+
+{% endblock content %}

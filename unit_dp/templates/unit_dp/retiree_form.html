@@ -1,0 +1,25 @@
+{% extends 'unit_dp/main_template.html' %}
+{% load static %}
+{% block content %}
+{% load widget_tweaks %}
+
+
+<div class="row justify-content-md-center">
+	<div class="col-md-6">
+		<div class="card card-body">
+			<form action="" method="POST">
+            	{% csrf_token %}
+				{% for field in form %}
+					{{field.label}}
+					{{field|add_class:'form-control'}}
+				
+				{% endfor %}
+				{{ form.errors }}
+				<hr>
+				<input type="submit" class="btn btn-info">
+			</form>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

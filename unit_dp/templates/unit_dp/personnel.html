@@ -1,0 +1,34 @@
+{% extends 'unit_dp/main_template.html' %}
+{% block content %}
+{% load widget_tweaks %}
+
+
+<br>
+
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>Personnel: {{personnel.first_name}}</h5>
+			<hr>
+			<a class="btn btn-outline-info  btn-sm btn-block" href="">Update Personnel</a>
+			<a class="btn btn-outline-danger  btn-sm btn-block" href="">Delete Personnel</a>
+
+		</div>
+	</div>
+
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>Contact Information</h5>
+			<hr>
+			<p>afsn:  {{personnel.afsn}}</p>
+			<p>bos:  {{personnel.bos}}</p>
+		</div>
+	</div>
+</div>
+
+
+
+	
+
+
+{% endblock content %}
