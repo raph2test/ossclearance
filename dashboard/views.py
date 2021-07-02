@@ -11,7 +11,7 @@ def register(request):
 	context = {'form':form}
 
 	if request.method == 'POST':
-		form = RetireeForm(request.POST)
+		form = UserCreationForm(request.POST)
 		if form.is_valid():
 			form.save()
 			return redirect('/retirees')
